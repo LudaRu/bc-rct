@@ -16,7 +16,7 @@ const Routers = () => (
             <Route exact path='/card' component={Cardx}/>
             <Route path='/catalog'>
                 <Route exact path='/catalog' component={Catalog}/>
-                <Route path='/catalog/:topicId' component={Item}/>
+                {/*<Route path='/catalog/:topicId' component={Item}/>*/}
             </Route>
             <Route exact path='*' component={NotFaund}/>
         </Switch>
