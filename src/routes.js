@@ -1,18 +1,21 @@
 import Catalog from "./components/main/Catalog";
 import {Route} from 'react-router-dom';
-import Item from "./components/main/catalog/Item";
 import React from "react";
 import {Switch, Router} from "react-router-dom";
 import Home from "./components/main/Home";
 import NotFaund from "./components/NotFaund";
 import Header from "./components/header";
 import Cardx from "./components/test/Cardx";
+import SignUp from "./components/test/SignUp";
+import FormExample from "./components/test/FormExample";
 
 const Routers = () => (
     <React.Fragment>
         <Header/>
         <Switch>
             <Route exact path='/' component={Home}/>
+            <Route exact path='/form' component={SignUp}/>
+            <Route exact path='/form2' component={FormExample}/>
             <Route exact path='/card' component={Cardx}/>
             <Route path='/catalog'>
                 <Route exact path='/catalog' component={Catalog}/>

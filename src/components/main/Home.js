@@ -1,6 +1,10 @@
 import React, {Component, useState} from 'react';
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import ModeHOC from "../../form/ModeHOC";
+
+
+const NewComponent = ModeHOC('edit', Button, 'Кнопка');
 
 class Home extends Component {
     constructor(props) {
@@ -22,13 +26,17 @@ class Home extends Component {
     render() {
         const {modalShow, show, hide} = this.state;
 
+
+
         return (
             <>
+                <NewComponent mode="edit" variant="warning" onClick={show} />
+                {/*{InfoWithHover}*/}
                 <Button variant="primary" onClick={show}>Launch demo modal</Button>
-                <Button variant="secondary" onClick={show}>Launch demo modal</Button>
-                <Button variant="danger" onClick={show}>Launch demo modal</Button>
-                <Button variant="warning" onClick={show}>Launch demo modal</Button>
-                <Button variant="success" onClick={show}>Launch demo modal</Button>
+                {/*<Button variant="secondary" onClick={show}>Launch demo modal</Button>*/}
+                {/*<Button variant="danger" onClick={show}>Launch demo modal</Button>*/}
+                {/*<Button variant="warning" onClick={show}>Launch demo modal</Button>*/}
+                {/*<Button variant="success" onClick={show}>Launch demo modal</Button>*/}
 
                 <Modal show={modalShow} onHide={hide}>
                     <Modal.Header closeButton>
@@ -49,3 +57,4 @@ class Home extends Component {
     }
 }
 export default Home;
+
