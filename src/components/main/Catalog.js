@@ -12,9 +12,9 @@ const item = {
     id: 1,
     imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Square_Lattice_Tiling.svg/220px-Square_Lattice_Tiling.svg.png',
     title: 'Автоклав бойлер формовочный компрессор',
-    tags: ['123 '],
+    tags: '123 ',
     createTime: '12:44',
-    isLike: true,
+    isLike: false,
 };
 
 class Catalog extends Component {

@@ -10578,13 +10578,14 @@ legend {
     }
 }
 
+.cursor{
+    cursor: pointer;
+}
 
 
-
-
-
-
-
+f16 {
+    font-size: 16px !important;
+}
 
 
 

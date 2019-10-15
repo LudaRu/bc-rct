@@ -6,7 +6,12 @@
 }
 
 .item-img {
+    height: 100px;
     flex: 0 100px;
+}
+
+.item-toolbar {
+    font-size: 16px;
 }
 
 .item-content {
@@ -14,15 +19,8 @@
     overflow: hidden;
 }
 
-.item-img img {
+.item-img > * {
     width: 100%;
-}
-
-
-.item-content .content{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .item-content .title {
