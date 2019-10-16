@@ -21,10 +21,14 @@ class Catalog extends Component {
     render() {
         const {match} = this.props;
         return (
-            <Container fluid>
-                <Row noGutters>
+            <Container>
+                <Row>
                     {[...Array(50).keys()].map(v => {
-                        return <Col className={``} xs={12} sm={6} lg={3}><div className={`p-1`}><Item item={item}/></div></Col>
+                        return <Col className={``} xs={12} md={6} lg={4}>
+                            <div className={`pb-3 pt-sm-3 pb-sm-3`}>
+                                <Item item={item}/>
+                            </div>
+                        </Col>
                     })}
                 </Row>
             </Container>

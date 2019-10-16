@@ -1,11 +1,73 @@
 import React, {Component} from 'react';
 import {Image} from "react-bootstrap";
-import { AnimateOnChange } from 'react-animation'
+// import { AnimateOnChange } from 'react-animation'
+import posed, { PoseGroup } from 'react-pose';
 
 import './style.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faHeart as farHeart, faTimesCircle} from '@fortawesome/free-regular-svg-icons'
 import {faHeart, faCheckCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
+import {easing} from "popmotion";
+
+
+
+// const Box = posed.div({
+//     pressable: true,
+//     init: { scale: 1},
+//     press: {scale: 1.2},
+//     pressEnd: {
+//         color: "#f00",
+//         scale: 1,
+//         transition: {
+//             color: {
+//                 type: "keyframes",
+//                 values: ["#f00", "#00f", "#f00"],
+//                 loop: Infinity,
+//                 ease: easing.easeInOut,
+//                 duration: 3000
+//             },
+//             scale: {
+//                 type: "keyframes",
+//                 values: [1.9, 4, 2, 1, 0.5],
+//                 loop: Infinity,
+//                 ease: easing.easeInOut,
+//                 duration: 3000
+//             }
+//         }
+//     },
+// });
+
+const Box = posed.div({
+    pressable: true,
+    init: { scale: 1},
+    press: {scale: 1.3},
+    pressEnd: {
+        scale: 1,
+        transition: {
+            type: 'spring',
+            stiffness: 500
+        }
+    },
+});
+
+const BoxItem = posed.div({
+    blob: {
+        zIdex: 100,
+        scale: 1.1,
+        transition: {
+            type: 'spring',
+            stiffness: 500
+        }
+    },
+    none: {
+        zIdex: 100,
+        scale: 1,
+        transition: {
+            type: 'spring',
+            stiffness: 500
+        }
+    },
+});
 
 class Item extends Component {
     constructor(props) {
@@ -13,6 +75,7 @@ class Item extends Component {
         this.state = {
             isLike: props.item.isLike,
             mode: 'view',
+            isBlob: false,
         };
 
         this.toggleLike = this.toggleLike.bind(this);
@@ -22,7 +85,14 @@ class Item extends Component {
         this.renderTags = this.renderTags.bind(this);
 
 
+        this.toggleBlob = this.toggleBlob.bind(this);
+
+
         this.renderToolbar = this.renderToolbar.bind(this);
+    }
+
+    toggleBlob() {
+        this.setState({isBlob: !this.state.isBlob});
     }
 
     toggleLike() {
@@ -34,13 +104,14 @@ class Item extends Component {
     }
 
     render() {
-        return <div className="bg-light item">
-            <div className="item-img rounded overflow-hidden">
+        return  <BoxItem pose={this.state.isBlob ? 'blob' : 'none'}><div className="bg-white rounded item shadow-sm">
+
+            <div onMouseDown={this.toggleBlob} className="item-img rounded overflow-hidden">
                 { this.renderImage() }
             </div>
             <div className="item-content">
                 <div className="h-100 d-flex justify-content-between ">
-                        <div className="d-flex flex-column pt-2 pb-2 pl-2 w-100">
+                        <div onMouseDown={this.toggleBlob}  className="d-flex flex-column pt-2 pb-2 pl-2 w-100">
                             <div className="title">{ this.renderTitle() }</div>
                             <div className="d-flex justify-content-between footer">
                                 {this.renderTags()}
@@ -52,7 +123,7 @@ class Item extends Component {
 
                 </div>
             </div>
-        </div>;
+        </div></BoxItem>;
     }
 
     renderImage() {
@@ -73,11 +144,12 @@ class Item extends Component {
     renderToolbar() { // fixme css
         const view = <>
             <FontAwesomeIcon onClick={ this.toggleMode } className="cursor" icon={faEdit}/>
-            <AnimateOnChange animationIn="bounceIn" animationOut="bounceOut" durationOut={100}>
-                <FontAwesomeIcon
-                onClick={ this.toggleLike }
-                className={'cursor ' + (this.state.isLike ? 'text-danger' : '')}
-                icon={ this.state.isLike ? faHeart : farHeart }/></AnimateOnChange>
+
+                <Box onClick={ this.toggleLike }>
+                    <FontAwesomeIcon
+                    className={'cursor ' + (this.state.isLike ? 'text-danger' : '')}
+                    icon={ this.state.isLike ? faHeart : farHeart }/>
+                </Box>
 
         </>;
 
