@@ -7,8 +7,8 @@ import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import ResponsiveEmbed from "react-bootstrap/ResponsiveEmbed";
 import Item from "./catalog/Item";
-import Masonry from 'react-masonry-css'
-import posed, { PoseGroup } from 'react-pose'
+import Masonry from 'react-masonry-css';
+import posed, { PoseGroup } from 'react-pose';
 
 const item = {
     id: 1,
@@ -37,7 +37,7 @@ const item = {
 const Itemx = posed.div({
     enter: { opacity: 1 },
     exit: { opacity: 0 }
-})
+});
 
 class Catalog extends Component {
     render() {
@@ -48,8 +48,8 @@ class Catalog extends Component {
                     breakpointCols={{default: 3,992: 2,768: 1,}}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
-                    {[...Array(50).keys()].map(v => {
-                        return <Item item={item}/>
+                    {[...Array(50).keys()].map((v, i) => {
+                        return <Item item={item} index={i}/>;
                     })}
                 </Masonry>
 

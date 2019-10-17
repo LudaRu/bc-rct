@@ -12,9 +12,8 @@ import Formtest from "./components/test/Formtest";
 
 const Routers = () => (
     <React.Fragment>
-        <Header/>
         <Switch>
-            <Route exact path='/' component={Home}/>
+            <Route exact path='/' component={Catalog}/>
             <Route exact path='/form' component={SignUp}/>
             <Route exact path='/form2' component={FormExample}/>
             <Route exact path='/f' component={Formtest}/>

@@ -10,6 +10,7 @@ import {faHeart, faCheckCircle, faTrashAlt} from '@fortawesome/free-solid-svg-ic
 import {easing} from "popmotion";
 import Input from "../../../form/Input";
 import FormExample from "../../test/FormExample";
+import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll';
 
 
 // const Box = posed.div({
@@ -41,12 +42,12 @@ import FormExample from "../../test/FormExample";
 const Box = posed.div({
     pressable: true,
     init: {scale: 1},
-    press: {scale: 1.2},
+    press: {scale: 1.4},
     pressEnd: {
         scale: 1,
         transition: {
             type: 'spring',
-            stiffness: 500
+            stiffness: 100
         }
     },
 });
@@ -56,10 +57,9 @@ const Box2 = posed.div({
         applyAtEnd: { display: 'none' },
         opacity: 0,
         height: 0,
-        width: 0,
         transition: {
             type: 'tween',
-            duration: 250,
+            duration: 350,
         }
 
     },
@@ -67,34 +67,41 @@ const Box2 = posed.div({
         applyAtStart: { display: 'flex' },
         opacity: 1,
         height: "auto",
-        width: "auto",
         transition: {
             type: 'tween',
-            duration: 300,
+            duration: 400,
         }
 
     },
 });
 
+const scrollTo = (name) => {
+    scroller.scrollTo(name, {
+        duration: 800,
+        delay: 0,
+        smooth: 'easeInOutQuart'
+    });
+};
+
 const Editorn = posed.div({
     edit: {
-        applyAtStart: { display: 'flex' },
+        applyAtStart: { display: 'block' },
         opacity: 1,
         height: "auto",
         transition: {
             type: 'tween',
-            duration: 300,
+            duration: 400,
             ease: "circOut",
         }
 
     },
     view: {
+        applyAtEnd: { display: 'none'},
         opacity: 0,
         height: 0,
-        applyAtEnd: { display: 'none'},
         transition: {
             type: 'tween',
-            duration: 250,
+            duration: 350,
             ease: "circOut",
         }
     },
@@ -129,6 +136,12 @@ class Item extends Component {
     }
 
     toggleMode() {
+        scroller.scrollTo(this.props.index, {
+            duration: 400,
+            delay: 0,
+            smooth: 'easeOutCirc',
+            offset: -15,
+        });
         this.setState({mode: (this.state.mode === 'view') ? 'edit' : 'view'});
     }
 
@@ -136,9 +149,9 @@ class Item extends Component {
         // pose={this.state.isBlob ? 'blob' : 'none'}
         const {match} = this.props;
 
-        return <>
-            <div className="bg-white rounded item shadow-sm">
-                <Box2 pose={this.state.mode} className="d-flex">
+        return <Element name={this.props.index} className="bg-white rounded item shadow-sm mb-3">
+
+                <div className="d-flex">
                     <div onClick={this.toggleMode} className="item-img rounded overflow-hidden">
                         <Image fluid src={this.props.item.imgUrl}/>
                     </div>
@@ -146,36 +159,25 @@ class Item extends Component {
                         <div className="h-100 d-flex justify-content-between ">
                             <div className="d-flex flex-column pt-2 pb-2 pl-2 w-100">
                                 <div className="title">{this.props.item.title}</div>
-                                <div className="d-flex justify-content-between footer">
+                                <Box2 pose={this.state.mode} className="d-flex justify-content-between footer">
                                     <small className="text-primary ">{this.props.item.tags}</small>
-                                </div>
+                                </Box2>
                             </div>
                         </div>
                     </div>
                     <div className="item-toolbar d-flex justify-content-between flex-column p-2">
-                        <FontAwesomeIcon  className="cursor" icon={faEdit}/>
                         <Box onClick={this.toggleLike}>
-                            <FontAwesomeIcon className={'cursor ' + (this.state.isLike ? 'text-danger' : '')}
+                            <FontAwesomeIcon className={'cursor f16 ' + (this.state.isLike ? 'text-danger' : '')}
                                              icon={this.state.isLike ? faHeart : farHeart}/>
                         </Box>
                     </div>
-                </Box2>
+                </div>
 
-
-                <Editorn onMouseDown={this.toggleMode} className="item-content" pose={this.state.mode}>
+                <Editorn onMouseDown={this.toggleMode} pose={this.state.mode}>
                     <div className="p-3"><FormExample/></div>
                 </Editorn>
 
-            </div>
-
-            {/*<div className="bg-white rounded item shadow-sm">*/}
-            {/*<div className="item-content p-3">*/}
-            {/*<div className="h-100 d-flex justify-content-between ">*/}
-            {/*<FormExample/>*/}
-            {/*</div>*/}
-            {/*</div>*/}
-            {/*</div>*/}
-        </>;
+        </Element>;
     }
 
     renderToolbar() { // fixme css
