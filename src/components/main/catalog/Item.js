@@ -56,21 +56,55 @@ const Box2 = posed.div({
     edit: {
         applyAtEnd: { display: 'none' },
         opacity: 0,
-        height: 0,
+        width:0,
         transition: {
             type: 'tween',
-            duration: 350,
+            duration: 100,
         }
 
     },
     view: {
         applyAtStart: { display: 'flex' },
+        width: "auto",
         opacity: 1,
-        height: "auto",
+        transition: {
+            delay: 300,
+            type: 'tween',
+            duration: 80,
+        }
+
+    },
+});
+
+
+const ImageAnim = posed.div({
+    edit: {
+        height: "130px",
+        width: "100%",
         transition: {
             type: 'tween',
-            duration: 400,
+            duration: 300,
         }
+
+    },
+    view: {
+        height: "100px",
+        width: "100px",
+        transition: {
+            type: 'tween',
+            duration: 200,
+        }
+    },
+});
+
+const Title2 = posed.div({
+    edit: {
+        applyAtEnd: { display: 'block' },
+        transition: {type: 'tween',duration: 1,}
+    },
+    view: {
+        applyAtStart: { display: '-webkit-box' },
+        transition: {type: 'tween',duration: 1,}
 
     },
 });
@@ -152,29 +186,36 @@ class Item extends Component {
         return <Element name={this.props.index} className="bg-white rounded item shadow-sm mb-3">
 
                 <div className="d-flex">
-                    <div onClick={this.toggleMode} className="item-img rounded overflow-hidden">
-                        <Image fluid src={this.props.item.imgUrl}/>
-                    </div>
+                    <ImageAnim pose={this.state.mode} onClick={this.toggleMode} className="item-img rounded overflow-hidden">
+                        <span style={{backgroundImage: `url(${this.props.item.imgUrl})`}} className="ttex"></span>
+                        <img className="rounded" src={this.props.item.imgUrl}/>
+                         {/*<Image fluid src={this.props.item.imgUrl}/>*/}
+                    </ImageAnim>
+
+                    <Box2 pose={this.state.mode}>
                     <div onClick={this.toggleMode} className="item-content">
-                        <div className="h-100 d-flex justify-content-between ">
-                            <div className="d-flex flex-column pt-2 pb-2 pl-2 w-100">
+                        <div className="h-100  justify-content-between ">
+                            <div  className="h-100 d-flex flex-column pt-2 pb-2 pl-2 w-100">
                                 <div className="title">{this.props.item.title}</div>
-                                <Box2 pose={this.state.mode} className="d-flex justify-content-between footer">
+                                <div className="d-flex justify-content-between footer">
                                     <small className="text-primary ">{this.props.item.tags}</small>
-                                </Box2>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="item-toolbar d-flex justify-content-between flex-column p-2">
-                        <Box onClick={this.toggleLike}>
-                            <FontAwesomeIcon className={'cursor f16 ' + (this.state.isLike ? 'text-danger' : '')}
-                                             icon={this.state.isLike ? faHeart : farHeart}/>
-                        </Box>
+                    <div className="item-toolbar  justify-content-between flex-column p-2">
+
+                            <Box onClick={this.toggleLike}>
+                                <FontAwesomeIcon className={'cursor f16 ' + (this.state.isLike ? 'text-danger' : '')}
+                                                 icon={this.state.isLike ? faHeart : farHeart}/>
+                            </Box>
+
                     </div>
+                    </Box2>
                 </div>
 
                 <Editorn onMouseDown={this.toggleMode} pose={this.state.mode}>
-                    <div className="p-3"><FormExample/></div>
+                    <div className="p-2"><FormExample/></div>
                 </Editorn>
 
         </Element>;

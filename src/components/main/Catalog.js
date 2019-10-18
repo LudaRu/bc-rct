@@ -12,7 +12,9 @@ import posed, { PoseGroup } from 'react-pose';
 
 const item = {
     id: 1,
-    imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Square_Lattice_Tiling.svg/220px-Square_Lattice_Tiling.svg.png',
+    // imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Square_Lattice_Tiling.svg/220px-Square_Lattice_Tiling.svg.png',
+    // imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
+    imgUrl: 'http://happymodern.ru/wp-content/uploads/2015/08/Vertikalnoe_ozelenenie_37.jpg',
     title: 'Автоклав бойлер формовочный компрессор',
     tags: '123 ',
     createTime: '12:44',
