@@ -1,18 +1,11 @@
 import React, {Component, useState} from 'react';
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import ModeHOC from "../../form/ModeHOC";
-
-
-const NewComponent = ModeHOC('edit', Button, 'Кнопка');
+import {CSSTransition} from 'react-transition-group';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalShow: false,
-            show: () => {this.setState({modalShow: true})},
-            hide: () => {this.setState({modalShow: false})},
+            flag: false,
         };
     }
 
@@ -23,38 +16,29 @@ class Home extends Component {
     componentWillUnmount() {
     }
 
-    render() {
-        const {modalShow, show, hide} = this.state;
+    setFlag(flag) {
+        this.setState({flag: flag});
+    }
 
+    render() {
+        const {flag} = this.state;
 
 
         return (
             <>
-                <NewComponent mode="edit" variant="warning" onClick={show} />
-                {/*{InfoWithHover}*/}
-                <Button variant="primary" onClick={show}>Launch demo modal</Button>
-                {/*<Button variant="secondary" onClick={show}>Launch demo modal</Button>*/}
-                {/*<Button variant="danger" onClick={show}>Launch demo modal</Button>*/}
-                {/*<Button variant="warning" onClick={show}>Launch demo modal</Button>*/}
-                {/*<Button variant="success" onClick={show}>Launch demo modal</Button>*/}
-
-                <Modal show={modalShow} onHide={hide}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={hide}>
-                            Close
-                        </Button>
-                        <Button variant="primary" onClick={hide}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
+                <div onClick={() => {this.setState({flag: true})}}>xxx</div>
+                <CSSTransition
+                    in={flag}
+                    timeout={300}
+                    classNames="my-node"
+                    unmountOnExit
+                >
+                    <div onClick={() => {this.setState({flag: false})}}>xxxx</div>
+                </CSSTransition>
             </>
         );
     }
 }
+
 export default Home;
 
