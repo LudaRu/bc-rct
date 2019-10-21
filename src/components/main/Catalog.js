@@ -47,7 +47,7 @@ class Catalog extends Component {
         return (
             <Container>
                 <Masonry
-                    breakpointCols={{default: 3,992: 2,768: 1,}}
+                    breakpointCols={{default: 3, 992: 2, 768: 1,}}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
                     {[...Array(50).keys()].map((v, i) => {

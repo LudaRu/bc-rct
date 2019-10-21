@@ -10,20 +10,40 @@ import {faHeart, faCheckCircle, faTrashAlt} from '@fortawesome/free-solid-svg-ic
 import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll';
 import {CSSTransition} from "react-transition-group";
 import Inputs from "../../test/Inputs";
+import ReactDOM from 'react-dom';
+import ItemView from "./item/ItemView";
 
 
-class Item extends Component {
+class Item extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLike: props.item.isLike,
-            mode: 'view',
             isOpen: false,
             isBlob: false,
         };
-
         this.toggleLike = this.toggleLike.bind(this);
         this.toggleMode = this.toggleMode.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
+
+        this.rect = null;
+    }
+
+
+    componentDidMount() {
+        // this.rect = ReactDOM.findDOMNode(this);
+        // window.addEventListener('scroll', this.handleScroll);
+    };
+
+    componentWillUnmount() {
+        // window.removeEventListener('scroll', this.handleScroll);
+    };
+
+    handleScroll() {
+        // console.log(this.rect.getBoundingClientRect())
+        // const bottom =  window.pageYOffset+window.innerHeight;
+        // window.pageYOffset;
+        // console.log();
     }
 
     toggleLike() {
@@ -32,12 +52,12 @@ class Item extends Component {
 
     toggleMode(flag) {
         console.log(123);
-        // scroller.scrollTo(this.props.index, {
-        //     duration: 400,
-        //     delay: 0,
-        //     smooth: 'easeOutCirc',
-        //     offset: -15,
-        // });
+        scroller.scrollTo(this.props.index, {
+            duration: 400,
+            delay: 0,
+            smooth: 'easeOutCirc',
+            offset: -15,
+        });
         this.setState(this.setState({isOpen: flag}));
     }
 
@@ -46,7 +66,7 @@ class Item extends Component {
         const {match} = this.props;
         const {isOpen} = this.state;
 
-        return <Element name={this.props.index} className="bg-white rounded item shadow-sm mb-3">
+        return <Element  name={this.props.index} className="bg-white rounded item shadow-sm mb-3">
             <CSSTransition
                 in={isOpen}
                 timeout={0}
@@ -88,10 +108,8 @@ class Item extends Component {
                         classNames="weditoranim"
                         unmountOnExit
                     >
-                        <div className="weditor" onMouseDown={() => {
-                            this.toggleMode(false);
-                        }}>
-                            <div className="p-2"><Inputs/></div>
+                        <div className="weditor">
+                            <ItemView/>
                         </div>
                     </CSSTransition>
                 </div>

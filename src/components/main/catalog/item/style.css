@@ -1,0 +1,83 @@
+.wimg {
+    height: 100px;
+    width: 100px;
+    transition: all 200ms;
+}
+
+.modeview-enter-done .wimg{
+    height: 130px;
+    width: 100%;
+}
+
+.modeview-exit-active .wimg{
+    /*opacity: 0;*/
+    /*transition: opacity 200ms;*/
+}
+
+
+.wcontent {
+    transition: all 300ms;
+    transition-delay: 200ms;
+    opacity: 1;
+}
+
+.modeview-enter-done .wcontent{
+    opacity: 0;
+    /*display: none;*/
+}
+
+
+
+
+@keyframes slideInLeft {
+    from {
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        visibility: hidden;
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+
+@keyframes slideInRight {
+    from {
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes slideOutRight {
+    from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        visibility: hidden;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+.page-enter {
+     animation: slideInRight 0.2s forwards;
+ }
+.page-exit {
+     animation: slideInRight 0.2s forwards;
+ }
