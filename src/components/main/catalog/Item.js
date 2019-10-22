@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Col, Form, Image, InputGroup} from "react-bootstrap";
-// import { AnimateOnChange } from 'react-animation'
 
 
 import './style.css';

@@ -5,6 +5,7 @@ import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {Element} from "react-scroll";
 import ItemEdit from "./ItemEdit";
 import {Button} from "react-bootstrap";
+import FormExample from "../../../test/FormExample";
 
 class ItemView extends Component {
 	constructor(props) {
@@ -39,7 +40,7 @@ class ItemView extends Component {
 					timeout={300}
 					classNames="page"
 					key={1}
-				><>{component}</>
+				><><FormExample/></>
 				</CSSTransition>
 			</TransitionGroup>
 		</div>);

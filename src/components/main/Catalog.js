@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import ResponsiveEmbed from "react-bootstrap/ResponsiveEmbed";
 import Item from "./catalog/Item";
 import Masonry from 'react-masonry-css';
-import posed, { PoseGroup } from 'react-pose';
 
 const item = {
     id: 1,
@@ -35,11 +29,6 @@ const item = {
 //
 // xl	≥1200px
 // true | "auto" | number | { span: true | "auto" | number, offset: number, order: number }
-
-const Itemx = posed.div({
-    enter: { opacity: 1 },
-    exit: { opacity: 0 }
-});
 
 class Catalog extends Component {
     render() {

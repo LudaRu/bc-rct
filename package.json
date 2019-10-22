@@ -7,16 +7,11 @@
     "@fortawesome/free-regular-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.6",
-    "bootstrap": "^4.3.1",
-    "eslint-plugin-react": "^7.16.0",
     "formik": "^1.5.8",
-    "popmotion": "^8.7.0",
     "react": "^16.10.2",
-    "react-animation": "^1.2.2",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
     "react-masonry-css": "^1.0.13",
-    "react-pose": "^4.0.9",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-scroll": "^1.7.14",
@@ -24,7 +19,7 @@
     "yup": "^0.27.0"
   },
   "scripts": {
-    "start": "set NODE_PATH=./src && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
