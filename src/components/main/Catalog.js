@@ -3,13 +3,12 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Item from "./catalog/Item";
 import Masonry from 'react-masonry-css';
-import srcimg from './1547367999_1.jpg';
 
 const item = {
     id: 1,
     // imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Square_Lattice_Tiling.svg/220px-Square_Lattice_Tiling.svg.png',
     // imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-    imgUrl: srcimg,
+    imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
     title: 'Автоклав бойлер формовочный компрессор',
     tags: '123 ',
     createTime: '12:44',
