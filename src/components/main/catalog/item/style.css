@@ -4,7 +4,7 @@
 }
 
 .item-img {
-    border: 1px solid #fff;
+    border: 1px solid #fff0;
     text-align: center;
     height: 100px;
     flex-shrink: 0;
@@ -332,4 +332,13 @@
 
 .wrapper .item {
     /*position: absolute;*/
+}
+
+.bottom_btn {
+    /*height: 50px;*/
+    width: 100%;
+}
+
+.bottom_btn button {
+    border-radius: 0 0 .25rem .25rem;
 }
