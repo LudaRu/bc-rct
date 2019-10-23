@@ -2,15 +2,14 @@ import React, {Component} from 'react';
 import {Col, Form, Image, InputGroup} from "react-bootstrap";
 
 
-import './style.css';
+import '../style.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faHeart as farHeart, faTimesCircle} from '@fortawesome/free-regular-svg-icons';
 import {faHeart, faCheckCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll';
 import {CSSTransition} from "react-transition-group";
-import Inputs from "../../test/Inputs";
-import ReactDOM from 'react-dom';
-import ItemView from "./item/ItemView";
+import ItemView from "./ItemView";
+import {CatalogService} from "../CatalogService";
 
 
 class Item extends React.Component {
@@ -19,8 +18,9 @@ class Item extends React.Component {
         this.state = {
             isLike: props.item.isLike,
             isOpen: false,
-            isBlob: false,
         };
+        console.log(this.props.item.id, this.state.isLike, "constructor")
+        console.log(props)
         this.toggleLike = this.toggleLike.bind(this);
         this.toggleMode = this.toggleMode.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
@@ -46,12 +46,14 @@ class Item extends React.Component {
     }
 
     toggleLike() {
-        this.setState({isLike: !this.state.isLike});
+        const like = !this.state.isLike;
+        CatalogService.toggleLike(this.props.item.id, like);
+        this.setState({isLike: like});
     }
 
     toggleMode(flag) {
         console.log(123);
-        scroller.scrollTo(this.props.index, {
+        scroller.scrollTo(this.props.item.id, {
             duration: 400,
             delay: 0,
             smooth: 'easeOutCirc',
@@ -61,11 +63,9 @@ class Item extends React.Component {
     }
 
     render() {
-        // pose={this.state.isBlob ? 'blob' : 'none'}
-        const {match} = this.props;
         const {isOpen} = this.state;
 
-        return <Element  name={this.props.index} className="bg-white rounded item shadow-sm mb-3">
+        return <Element  name={this.props.item.id} className="bg-white rounded item shadow-sm mb-3">
             <CSSTransition
                 in={isOpen}
                 timeout={0}
@@ -108,7 +108,7 @@ class Item extends React.Component {
                         unmountOnExit
                     >
                         <div className="weditor">
-                            <ItemView/>
+                            <ItemView item={this.props.item}/>
                         </div>
                     </CSSTransition>
                 </div>

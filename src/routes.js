@@ -1,4 +1,4 @@
-import Catalog from "./components/main/Catalog";
+import Catalog from "./components/main/catalog/Catalog";
 import {Route} from 'react-router-dom';
 import React from "react";
 import {Switch, Router} from "react-router-dom";
