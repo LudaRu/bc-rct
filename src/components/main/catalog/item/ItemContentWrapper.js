@@ -59,7 +59,7 @@ class BackgroundImage extends React.Component {
     }
 
     renderEdit() {
-        return <EditForm/>;
+        return <EditForm item={this.props.item}/>;
     }
 
     render() {

@@ -37,7 +37,7 @@ class Catalog extends Component {
                     breakpointCols={{default: 3, 992: 2, 768: 1,}}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
-                    {this.state.items.map((item) => <Item item={item}/>)}
+                    {this.state.items.map((item) => <Item key={item.id} item={item}/>)}
                 </Masonry>
             </Container>
         );
