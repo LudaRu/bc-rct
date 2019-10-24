@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import FormExample from "../../../test/FormExample";
 import './style.css';
 
-class ItemEdit extends Component {
+class EditForm extends Component {
 	render() {
 		return (<div className="p-2">
 				<FormExample/>
@@ -10,4 +10,4 @@ class ItemEdit extends Component {
 	}
 }
 
-export default ItemEdit;
+export default EditForm;

@@ -1,33 +1,41 @@
-import React, {Component} from 'react';
-import {Col, Form, Image, InputGroup} from "react-bootstrap";
-
-
-import '../style.css';
+import React from 'react';
+import './style.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faHeart as farHeart, faTimesCircle} from '@fortawesome/free-regular-svg-icons';
 import {faHeart, faCheckCircle, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll';
 import {CSSTransition} from "react-transition-group";
-import ItemView from "./ItemView";
+import ItemContentWrapper from "./ItemContentWrapper";
 import {CatalogService} from "../CatalogService";
-
 
 class Item extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLike: props.item.isLike,
-            isOpen: false,
+            isOpen: true,
+            isEdit: false,
         };
-        console.log(this.props.item.id, this.state.isLike, "constructor")
-        console.log(props)
         this.toggleLike = this.toggleLike.bind(this);
-        this.toggleMode = this.toggleMode.bind(this);
+        this.togglOpen = this.togglOpen.bind(this);
+        this.togglEdit = this.togglEdit.bind(this);
+        this.renderImageWrapper = this.renderImageWrapper.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
-
-        this.rect = null;
     }
 
+    renderImageWrapper() {
+        const edit = <div className="wimg item-img rounded overflow-hidden">
+            <img className="rounded imgUploader" src="https://avatars.mds.yandex.net/get-canvas/1637513/2a0000016d9637a6270531ff81d8f5b665bb/cropSource"/>
+            <input className="fileinput" type="file" />
+        </div>;
+
+        const view = <div className="wimg item-img rounded overflow-hidden">
+            <span style={{backgroundImage: `url(${this.props.item.imgUrl})`}} className="ttex"></span>
+            <img className="rounded" src={this.props.item.imgUrl}/>
+        </div>;
+
+        return <>{this.state.isEdit ? edit : view}</>
+    }
 
     componentDidMount() {
         // this.rect = ReactDOM.findDOMNode(this);
@@ -51,8 +59,7 @@ class Item extends React.Component {
         this.setState({isLike: like});
     }
 
-    toggleMode(flag) {
-        console.log(123);
+    togglOpen(flag) {
         scroller.scrollTo(this.props.item.id, {
             duration: 400,
             delay: 0,
@@ -60,12 +67,19 @@ class Item extends React.Component {
             offset: -15,
         });
         this.setState(this.setState({isOpen: flag}));
+        if (!flag) {
+            this.setState(this.setState({isEdit: flag}));
+        }
+    }
+
+    togglEdit(flag) {
+        this.setState(this.setState({isEdit: flag}));
     }
 
     render() {
         const {isOpen} = this.state;
 
-        return <Element  name={this.props.item.id} className="bg-white rounded item shadow-sm mb-3">
+        return <Element name={this.props.item.id} className="bg-white rounded item shadow-sm mb-3">
             <CSSTransition
                 in={isOpen}
                 timeout={0}
@@ -73,13 +87,8 @@ class Item extends React.Component {
                 appear
             >
                 <div>
-                    <div className="d-flex">
-                        <div onClick={() => {
-                            this.toggleMode(!this.state.isOpen);
-                        }} className="wimg item-img rounded overflow-hidden">
-                            <span style={{backgroundImage: `url(${this.props.item.imgUrl})`}} className="ttex"></span>
-                            <img className="rounded" src={this.props.item.imgUrl}/>
-                        </div>
+                    <div className="d-flex" onClick={() => {this.togglOpen(!this.state.isOpen)}}>
+                        {this.renderImageWrapper()}
 
                         <div className="wcontent w-100 d-flex">
                             <div className="item-content">
@@ -94,9 +103,9 @@ class Item extends React.Component {
                             </div>
                             <div className="item-toolbar  justify-content-between flex-column p-2">
                                 <div>
-                                <FontAwesomeIcon onClick={this.toggleLike}
-                                                 className={'like f16 ' + (this.state.isLike ? 'text-danger' : '')}
-                                                 icon={this.state.isLike ? faHeart : farHeart}/>
+                                    <FontAwesomeIcon onClick={this.toggleLike}
+                                                     className={'like f16 ' + (this.state.isLike ? 'text-danger' : '')}
+                                                     icon={this.state.isLike ? faHeart : farHeart}/>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +117,7 @@ class Item extends React.Component {
                         unmountOnExit
                     >
                         <div className="weditor">
-                            <ItemView item={this.props.item}/>
+                            <ItemContentWrapper item={this.props.item} state={this.state} toggleEdit={this.togglEdit}/>
                         </div>
                     </CSSTransition>
                 </div>

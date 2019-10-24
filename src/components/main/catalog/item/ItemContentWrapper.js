@@ -4,41 +4,45 @@ import './style.css';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import FormExample from "../../../test/FormExample";
 import {Button, ButtonGroup} from "react-bootstrap";
+import EditForm from "./EditForm";
 
-class ItemView extends Component {
+
+
+class ItemContentWrapper extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            modeEdit: false,
-        };
-
     }
 
     componentDidMount() {
     };
 
     render() {
-        const {modeEdit} = this.state;
+        const {isEdit} = this.props.state;
+        const {toggleEdit} = this.props;
         return (<div className="">
             <TransitionGroup>
                 <CSSTransition
                     timeout={0}
                     classNames="page"
-                    key={modeEdit}
+                    key={isEdit}
                 >
                     <div className="wrapper p-2">
-                        <BackgroundImage item={this.props.item} modeEdit={modeEdit}/>
+                        <BackgroundImage item={this.props.item} isEdit={isEdit}/>
                     </div>
                 </CSSTransition>
             </TransitionGroup>
-            <div className="bottom_btn">
-                <ButtonGroup size="sm" className="w-100">
-                    <Button onClick={() => {this.setState({modeEdit: true});}} >Редактировать</Button>
-                    <Button variant="secondary">Закрыть</Button>
-                </ButtonGroup>
-            </div>
+            <ButtonsItem toggleEdit={toggleEdit}/>
         </div>);
     }
+}
+
+function ButtonsItem(props) {
+    return <div className="bottom_btn p-2">
+        <ButtonGroup className="w-100">
+            <Button onClick={props.toggleEdit}>Редактировать</Button>
+            <Button variant="secondary">Закрыть</Button>
+        </ButtonGroup>
+    </div>;
 }
 
 
@@ -55,14 +59,14 @@ class BackgroundImage extends React.Component {
     }
 
     renderEdit() {
-        return <><FormExample/></>;
+        return <EditForm/>;
     }
 
     render() {
-        const Comp = this.props.modeEdit ? this.renderEdit.bind(this) : this.renderView.bind(this);
+        const Comp = this.props.isEdit ? this.renderEdit.bind(this) : this.renderView.bind(this);
 
-        return <div><Comp/></div>;
+        return <Comp/>;
     }
 }
 
-export default ItemView;
+export default ItemContentWrapper;
