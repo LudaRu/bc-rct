@@ -89,7 +89,6 @@ class Item extends React.Component {
                 <div>
                     <div className="d-flex" onClick={() => {this.togglOpen(!this.state.isOpen)}}>
                         {this.renderImageWrapper()}
-
                         <div className="wcontent w-100 d-flex">
                             <div className="item-content">
                                 <div className="h-100  justify-content-between ">

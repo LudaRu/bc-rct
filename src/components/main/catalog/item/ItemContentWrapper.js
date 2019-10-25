@@ -31,7 +31,6 @@ class ItemContentWrapper extends Component {
                     </div>
                 </CSSTransition>
             </TransitionGroup>
-            <ButtonsItem toggleEdit={toggleEdit}/>
         </div>);
     }
 }

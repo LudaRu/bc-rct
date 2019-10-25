@@ -31,7 +31,7 @@ class Catalog extends Component {
     render() {
         const {match} = this.props;
         return (
-            <Container>
+            <>
                 <Header/>
                 <Masonry
                     breakpointCols={{default: 3, 992: 2, 768: 1,}}
@@ -39,7 +39,7 @@ class Catalog extends Component {
                     columnClassName="my-masonry-grid_column">
                     {this.state.items.map((item) => <Item key={item.id} item={item}/>)}
                 </Masonry>
-            </Container>
+            </>
         );
     }
 }

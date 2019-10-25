@@ -1,0 +1,11 @@
+.clouds{
+    background: linear-gradient(to left, #ece9e6, #ffffff);
+}
+
+.moonlitAsteroid {
+    background: linear-gradient(to left, #2C5364, #203A43, #0F2027);
+}
+
+.friday {
+    background: linear-gradient(to left, #83a4d4, #b6fbff);
+}
