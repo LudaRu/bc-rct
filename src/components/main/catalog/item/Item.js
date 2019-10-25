@@ -13,7 +13,7 @@ class Item extends React.Component {
         super(props);
         this.state = {
             isLike: props.item.isLike,
-            isOpen: true,
+            isOpen: false,
             isEdit: false,
         };
         this.toggleLike = this.toggleLike.bind(this);

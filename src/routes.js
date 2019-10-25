@@ -10,6 +10,7 @@ import SignUp from "./components/test/SignUp";
 import FormExample from "./components/test/FormExample";
 import Formtest from "./components/test/Formtest";
 import Tags from "./components/test/Tags";
+import Toolbar from "./components/main/catalog/toolbar/Index";
 
 const Routers = () => (
     <React.Fragment>
@@ -24,6 +25,7 @@ const Routers = () => (
             </Route>
             <Route exact path='*' component={NotFaund}/>
         </Switch>
+        <Toolbar/>
      </React.Fragment>
 );
 
