@@ -24,12 +24,12 @@ class Item extends React.Component {
     }
 
     renderImageWrapper() {
-        const edit = <div className="wimg item-img rounded overflow-hidden">
+        const edit = <div className="wimg item-img rounded overflow-hidden"  onClick={() => {this.togglOpen(!this.state.isOpen)}}>
             <img className="rounded imgUploader" src="https://avatars.mds.yandex.net/get-canvas/1637513/2a0000016d9637a6270531ff81d8f5b665bb/cropSource"/>
             <input className="fileinput" type="file" />
         </div>;
 
-        const view = <div className="wimg item-img rounded overflow-hidden">
+        const view = <div className="wimg item-img rounded overflow-hidden"  onClick={() => {this.togglOpen(!this.state.isOpen)}}>
             <span style={{backgroundImage: `url(${this.props.item.imgUrl})`}} className="ttex"></span>
             <img className="rounded" src={this.props.item.imgUrl}/>
         </div>;
@@ -87,15 +87,15 @@ class Item extends React.Component {
                 appear
             >
                 <div>
-                    <div className="d-flex" onClick={() => {this.togglOpen(!this.state.isOpen)}}>
+                    <div className="d-flex">
                         {this.renderImageWrapper()}
                         <div className="wcontent w-100 d-flex">
-                            <div className="item-content">
+                            <div className="item-content"  onClick={() => {this.togglOpen(!this.state.isOpen)}}>
                                 <div className="h-100  justify-content-between ">
                                     <div className="h-100 d-flex flex-column pt-2 pb-2 pl-2 w-100">
                                         <div className="title">{this.props.item.title}</div>
                                         <div className="d-flex justify-content-between footer">
-                                            <small className="text-primary ">{this.props.item.tags}</small>
+                                            <small className="text-info">{this.props.item.tags.map(tag => '#'+tag+' ')}</small>
                                         </div>
                                     </div>
                                 </div>

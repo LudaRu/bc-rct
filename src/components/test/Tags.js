@@ -16,7 +16,7 @@ class Tags extends React.Component {
 			input: '',
 			focused: false,
 			isOpenDropdown: false,
-			dropdownItems: this.props.dropdownItems || ['денис', 'миша', 'yfcnz'],
+			dropdownItems: this.props.dropdownItems || ['Ou', 'My', 'ifcncomming'],
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -94,7 +94,7 @@ class Tags extends React.Component {
 
 				<div className="mr-n2 mb-n2 mt-2">
 					{this.state.items.map((item, i) =>
-						<div className="btn btn-sm btn-primary mr-2 mb-2" key={i} onClick={this.handleRemoveItem(i)}>
+						<div className="btn btn-sm btn-info mr-2 mb-2" key={i} onClick={this.handleRemoveItem(i)}>
 							{item}  <FontAwesomeIcon icon={faTimesCircle}/>
 						</div>
 					)}

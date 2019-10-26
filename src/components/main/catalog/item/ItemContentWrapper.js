@@ -62,7 +62,7 @@ class BackgroundImage extends React.Component {
     }
 
     render() {
-        const Comp = this.props.isEdit ? this.renderEdit.bind(this) : this.renderView.bind(this);
+        const Comp = this.props.isEdit ? this.renderEdit.bind(this) : this.renderEdit.bind(this);
 
         return <Comp/>;
     }

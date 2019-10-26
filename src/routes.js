@@ -14,7 +14,7 @@ import Toolbar from "./components/toolbar/Index";
 const Routers = () => (
     <React.Fragment>
         <Switch>
-            <Route exact path='/' component={Tags}/>
+            <Route exact path='/' component={Catalog}/>
             <Route exact path='/form2' component={FormExample}/>
             <Route exact path='/f' component={Formtest}/>
             <Route exact path='/card' component={Cardx}/>
