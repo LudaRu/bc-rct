@@ -7,6 +7,10 @@ import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, s
 import {CSSTransition} from "react-transition-group";
 import ItemContentWrapper from "./ItemContentWrapper";
 import {CatalogService} from "../CatalogService";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from "react-bootstrap/Button";
+import {ToolbarContext} from "../../../test/ToolbarStore";
+import {ToolbarService} from "../../../toolbar/ToolbarService";
 
 class Item extends React.Component {
     constructor(props) {
@@ -68,7 +72,13 @@ class Item extends React.Component {
         });
         this.setState(this.setState({isOpen: flag}));
         if (!flag) {
+            ToolbarService.back();
             this.setState(this.setState({isEdit: flag}));
+        } else {
+            ToolbarService.setView(<ButtonGroup className="w-100">
+                <Button variant="info"><FontAwesomeIcon icon={faEdit}/> Редактировать</Button>
+                <Button onClick={() => {this.togglOpen(false)}} variant="secondary"><FontAwesomeIcon icon={faTimesCircle}/></Button>
+            </ButtonGroup>);
         }
     }
 
@@ -80,12 +90,7 @@ class Item extends React.Component {
         const {isOpen} = this.state;
 
         return <Element name={this.props.item.id} className="bg-white rounded item shadow-sm mb-3">
-            <CSSTransition
-                in={isOpen}
-                timeout={0}
-                classNames="modeview"
-                appear
-            >
+            <CSSTransition in={isOpen}timeout={0} classNames="modeview">
                 <div>
                     <div className="d-flex" onClick={() => {this.togglOpen(!this.state.isOpen)}}>
                         {this.renderImageWrapper()}
@@ -109,12 +114,7 @@ class Item extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <CSSTransition
-                        in={isOpen}
-                        timeout={500}
-                        classNames="weditoranim"
-                        unmountOnExit
-                    >
+                    <CSSTransition in={isOpen} timeout={500} classNames="weditoranim" unmountOnExit>
                         <div className="weditor">
                             <ItemContentWrapper item={this.props.item} state={this.state} toggleEdit={this.togglEdit}/>
                         </div>

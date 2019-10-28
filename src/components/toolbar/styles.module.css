@@ -11,3 +11,29 @@
     border-radius: .25rem;
     /*border-radius: .25rem .25rem 0 0;*/
 }
+
+.page-enter .home{
+    animation: slideInLeft 0.5s forwards;
+}
+.page-exit .home{
+    animation: slideOutLeft 0.5s forwards;
+}
+
+.page-enter .about{
+    animation: slideInRight 0.5s forwards;
+}
+.page-exit .about{
+    animation: slideOutRight 0.5s forwards;
+}
+
+
+.catalogBar {
+    color: #fff;
+    min-height: 50px;
+    justify-content: space-around;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+

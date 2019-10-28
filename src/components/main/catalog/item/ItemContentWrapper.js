@@ -35,15 +35,6 @@ class ItemContentWrapper extends Component {
     }
 }
 
-function ButtonsItem(props) {
-    return <div className="bottom_btn p-2">
-        <ButtonGroup className="w-100">
-            <Button onClick={props.toggleEdit}>Редактировать</Button>
-            <Button variant="secondary">Закрыть</Button>
-        </ButtonGroup>
-    </div>;
-}
-
 
 class BackgroundImage extends React.Component {
     renderView() {
