@@ -1,4 +1,3 @@
-
 .enter {
     /*opacity: 0;*/
     bottom: -50px;
@@ -18,14 +17,3 @@
     bottom: -50px;
     transition: all 250ms;
 }
-
-
-
-/*@keyframes slidein {*/
-    /*from {*/
-        /*bottom: 0;*/
-    /*}*/
-    /*to {*/
-        /*bottom: -100px;*/
-    /*}*/
-/*}*/

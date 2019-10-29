@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Item from "./item/Item";
+import Index from "./item/Index";
 import Masonry from 'react-masonry-css';
 import {CatalogService} from "./CatalogService";
 import Header from "./header/Header";
@@ -37,7 +37,7 @@ class Catalog extends Component {
                     breakpointCols={{default: 3, 992: 2, 768: 1,}}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
-                    {this.state.items.map((item) => <Item key={item.id} item={item}/>)}
+                    {this.state.items.map((item) => <Index key={item.id} item={item}/>)}
                 </Masonry>
             </>
         );
