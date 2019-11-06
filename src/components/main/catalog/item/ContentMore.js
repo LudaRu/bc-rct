@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
-import Inputs from "../../../test/Inputs";
 import './style.css';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
-import FormExample from "../../../test/FormExample";
-import {Button, ButtonGroup} from "react-bootstrap";
 import FormEdit from "./FormEdit";
-import Tags from "../../../test/Tags";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit, faTimesCircle} from "@fortawesome/free-regular-svg-icons";
-import {ToolbarService} from "../../../toolbar/ToolbarService";
 import FormView from "./FormView";
+import {withItemContext} from "./Index";
 
 
 class ContentMore extends Component {
@@ -19,7 +13,6 @@ class ContentMore extends Component {
     }
 
     setEditMode() {
-        ToolbarService.setView('');
         this.props.setEditMode();
     }
 
@@ -30,15 +23,10 @@ class ContentMore extends Component {
                     <CSSTransition
                         timeout={0}
                         classNames="page"
-                        key={this.props.isEdit}
+                        key={this.props.context.isEdit}
                     >
                         <div className="wrapper p-2">
-                            <Wrapper
-                                item={this.props.item}
-                                isEdit={this.props.isEdit}
-                                setEditMode={this.props.setEditMode}
-                                setViewMode={this.props.setViewMode}
-                            />
+                            <Wrapper isEdit={this.props.context.isEdit}/>
                         </div>
                     </CSSTransition>
                 </TransitionGroup>
@@ -47,21 +35,8 @@ class ContentMore extends Component {
     }
 }
 
-export default ContentMore;
+export default withItemContext(ContentMore);
 
-const Wrapper = ({item, isEdit, setEditMode, setViewMode}) => (
-    <>{isEdit ?
-        <FormEdit
-            item={item}
-            isEdit={isEdit}
-            setEditMode={setEditMode}
-            setViewMode={setViewMode}
-        />
-        : <FormView
-            item={item}
-            isEdit={isEdit}
-            setEditMode={setEditMode}
-            setViewMode={setViewMode}
-        />
-    }</>
+const Wrapper = ({isEdit}) => (
+    <>{isEdit ? <FormEdit/> : <FormView/>}</>
 );

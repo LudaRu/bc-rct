@@ -12,13 +12,14 @@ class Queue {
     }
 
     back() {
-        const lastItem = this.items.pop();
+        this.items.pop();
+        const lastItem = this.items[this.items.length-1];
         this.bs.next(lastItem);
     }
 
     reset() {
         this.items = [];
-        this.bs.next(undefined);
+        this.bs.next(null);
     }
 }
 

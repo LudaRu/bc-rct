@@ -12,14 +12,29 @@ import Button from "react-bootstrap/Button";
 import {ToolbarService} from "../../../toolbar/ToolbarService";
 import * as PropTypes from "prop-types";
 
-const BarViewItem = ({edit}) => (<ButtonGroup className="w-100">
-    <Button onClick={edit} variant="info">
-        <FontAwesomeIcon icon={faEdit}/> Редактировать
-    </Button>
-    <Button onClick={edit} variant="secondary">
-        <FontAwesomeIcon icon={faTimesCircle}/>
-    </Button>
-</ButtonGroup>);
+
+const ItemContext = React.createContext();
+
+export function withItemContext(Component) {
+    return function WrapperComponent(props) {
+        return (
+            <ItemContext.Consumer>
+                {state => <Component {...props} context={state} />}
+            </ItemContext.Consumer>
+        );
+    };
+}
+
+const BarViewItem = ({edit}) => (
+    <ButtonGroup className="w-100">
+        <Button onClick={edit} variant="info">
+            <FontAwesomeIcon icon={faEdit}/> Редактировать
+        </Button>
+        <Button onClick={edit} variant="secondary">
+            <FontAwesomeIcon icon={faTimesCircle}/>
+        </Button>
+    </ButtonGroup>
+);
 
 
 BarViewItem.propTypes = {onClick: PropTypes.func};
@@ -27,10 +42,17 @@ BarViewItem.propTypes = {onClick: PropTypes.func};
 class Index extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
+            item: props.item,
             isLike: props.item.isLike,
             isOpen: false,
             isEdit: false,
+            openItem: () => {this.openItem()},
+            closeItem: () => {this.closeItem()},
+            setEditMode: () => {this.setEditMode()},
+            setViewMode: () => {this.setViewMode()},
+            toggleLike: () => {this.toggleLike()},
         };
 
         this.toggleLike = this.toggleLike.bind(this);
@@ -73,9 +95,10 @@ class Index extends React.Component {
         this.setState({isOpen: true});
         ToolbarService.setView(<BarViewItem edit={() => {this.closeItem()}}/>);
     }
+
     closeItem() {
         this.setState({isOpen: false});
-            ToolbarService.back();
+        ToolbarService.reset();
     }
 
     setEditMode() {
@@ -87,23 +110,25 @@ class Index extends React.Component {
     }
 
     render() {
-        const {isOpen, isEdit} = this.state;
+        const {isOpen} = this.state;
         const {item} = this.props;
 
         return <Element name={item.id} className="bg-white rounded item shadow-sm mb-3">
             <CSSTransition in={isOpen} timeout={0} classNames="modeview">
                 <>
-                    <div className="d-flex">
-                        { this.renderImageWrapper() }
-                        <div className="wcontent w-100 d-flex">
-                            { this.renderContentPreview() }
+                    <ItemContext.Provider value={this.state}>
+                        <div className="d-flex">
+                            { this.renderImageWrapper() }
+                            <div className="wcontent w-100 d-flex">
+                                { this.renderContentPreview() }
+                            </div>
                         </div>
-                    </div>
-                    <CSSTransition in={isOpen} timeout={500} classNames="weditoranim" unmountOnExit>
-                        <div className="weditor">
-                            <ContentMore item={item} isEdit={isEdit} setEditMode={this.setEditMode} setViewMode={this.setViewMode}/>
-                        </div>
-                    </CSSTransition>
+                        <CSSTransition in={isOpen} timeout={500} classNames="weditoranim" unmountOnExit>
+                            <div className="weditor">
+                                <ContentMore/>
+                            </div>
+                        </CSSTransition>
+                    </ItemContext.Provider>
                 </>
             </CSSTransition>
         </Element>;

@@ -22,7 +22,6 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        console.log(ToolbarService.getView())
         this.subCatalogService = ToolbarService.getView().subscribe(v => {
             this.setState({nowView: v === null ? this.defaultBar : v});
             this.setState({trigger: !this.state.trigger});

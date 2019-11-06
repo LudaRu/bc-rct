@@ -32,7 +32,6 @@ class Catalog extends Component {
         const {match} = this.props;
         return (
             <>
-                <Header/>
                 <Masonry
                     breakpointCols={{default: 3, 992: 2, 768: 1,}}
                     className="my-masonry-grid"

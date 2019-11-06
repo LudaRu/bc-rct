@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './style.css';
 import Tags from "../../../test/Tags";
-import PropTypes from "prop-types";
 import {Button, ButtonGroup} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTimesCircle} from "@fortawesome/free-regular-svg-icons";
@@ -39,9 +38,5 @@ class FormEdit extends Component {
         );
 	}
 }
-
-FormEdit.propTypes = {
-	item: PropTypes.object,
-};
 
 export default FormEdit;
