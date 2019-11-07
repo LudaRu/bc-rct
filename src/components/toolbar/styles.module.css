@@ -36,4 +36,12 @@
     align-items: center;
 }
 
+.catalogBar a {
+    color: #fff;
+}
+
+.catalogBar a:hover {
+    color: #fff;
+}
+
 

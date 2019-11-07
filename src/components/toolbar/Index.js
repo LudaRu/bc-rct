@@ -8,8 +8,20 @@ import EditForm from "../main/catalog/item/ContentMore";
 import fadeTransition from "./animate.module.css";
 
 import {faEdit, faHeart as farHeart, faTimesCircle} from '@fortawesome/free-regular-svg-icons';
-import {faHeart, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faHeart, faPlus, faHome} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Link} from "react-router-dom";
+
+
+const BarNavigate = () => (
+    <div className={_.catalogBar}>
+        <div><Link to='/'><FontAwesomeIcon icon={faHome}/></Link></div>
+        <div><Link to='/like'><FontAwesomeIcon icon={faHeart}/></Link></div>
+        <div><Link to='/create'><FontAwesomeIcon icon={faPlus}/></Link></div>
+        <div><FontAwesomeIcon icon={faHeart}/></div>
+        <div><FontAwesomeIcon icon={faTimesCircle}/></div>
+    </div>
+);
 
 class Index extends Component {
     constructor(props) {
@@ -50,15 +62,6 @@ class Index extends Component {
 export default Index;
 
 
-const BarNavigate = () => (
-    <div className={_.catalogBar}>
-        <div><FontAwesomeIcon icon={farHeart}/></div>
-        <div><FontAwesomeIcon icon={faEdit}/></div>
-        <div><FontAwesomeIcon icon={faPlus}/></div>
-        <div><FontAwesomeIcon icon={faHeart}/></div>
-        <div><FontAwesomeIcon icon={faTimesCircle}/></div>
-    </div>
-);
 
 const Wrapper = ({nowView}) => (
     <div className={_.toolbar}>

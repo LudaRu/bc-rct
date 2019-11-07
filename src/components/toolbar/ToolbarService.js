@@ -1,7 +1,7 @@
-import {BehaviorSubject, Subject} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 class Queue {
-    constructor(value) {
+    constructor() {
         this.bs = new BehaviorSubject(null);
         this.items = [];
     }

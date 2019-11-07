@@ -11,6 +11,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 import {ToolbarService} from "../../../toolbar/ToolbarService";
 import * as PropTypes from "prop-types";
+import {withCatalogContext} from "../Catalog";
 
 
 const ItemContext = React.createContext();
@@ -41,6 +42,7 @@ BarViewItem.propTypes = {onClick: PropTypes.func};
 
 class Index extends React.Component {
     constructor(props) {
+        console.log(1231231)
         super(props);
 
         this.state = {
@@ -92,17 +94,41 @@ class Index extends React.Component {
     }
 
     openItem() {
+        if (this.props.context.hasOpenItem) {
+            return false;
+        }
+        this.props.context.setHasOpenItem(true);
         this.setState({isOpen: true});
-        ToolbarService.setView(<BarViewItem edit={() => {this.closeItem()}}/>);
+        ToolbarService.setView(
+            <ButtonGroup className="w-100">
+                <Button onClick={() => {this.setEditMode()}} variant="info">
+                    <FontAwesomeIcon icon={faEdit}/> Редактировать
+                </Button>
+                <Button onClick={() => {this.closeItem()}} variant="secondary">
+                    <FontAwesomeIcon icon={faTimesCircle}/>
+                </Button>
+            </ButtonGroup>
+        );
     }
 
     closeItem() {
+        this.props.context.setHasOpenItem(false);
         this.setState({isOpen: false});
         ToolbarService.reset();
     }
 
     setEditMode() {
         this.setState({isEdit: true});
+        ToolbarService.setView(
+            <ButtonGroup className="w-100">
+                <Button onClick={ToolbarService.back} variant="success">
+                    <FontAwesomeIcon icon={faEdit}/> Сохранить
+                </Button>
+                <Button onClick={() => {ToolbarService.back(); this.setViewMode()}} variant="secondary">
+                    <FontAwesomeIcon icon={faTimesCircle}/>
+                </Button>
+            </ButtonGroup>
+        )
     }
 
     setViewMode() {
@@ -174,4 +200,4 @@ class Index extends React.Component {
     }
 }
 
-export default Index;
+export default withCatalogContext(Index);

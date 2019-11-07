@@ -9,7 +9,7 @@ import {withItemContext} from "./Index";
 class ContentMore extends Component {
     constructor(props) {
         super(props);
-        this.setEditMode = this.setEditMode.bind(this)
+        this.setEditMode = this.setEditMode.bind(this);
     }
 
     setEditMode() {
@@ -18,25 +18,19 @@ class ContentMore extends Component {
 
     render() {
         return (
-            <div className="">
-                <TransitionGroup>
-                    <CSSTransition
-                        timeout={0}
-                        classNames="page"
-                        key={this.props.context.isEdit}
-                    >
-                        <div className="wrapper p-2">
-                            <Wrapper isEdit={this.props.context.isEdit}/>
-                        </div>
-                    </CSSTransition>
-                </TransitionGroup>
-            </div>
+            <TransitionGroup>
+                <CSSTransition
+                    timeout={0}
+                    classNames="page"
+                    key={this.props.context.isEdit}
+                >
+                    <div className="wrapper p-2">
+                        {this.props.context.isEdit ? <FormEdit/> : <FormView/>}
+                    </div>
+                </CSSTransition>
+            </TransitionGroup>
         );
     }
 }
 
 export default withItemContext(ContentMore);
-
-const Wrapper = ({isEdit}) => (
-    <>{isEdit ? <FormEdit/> : <FormView/>}</>
-);

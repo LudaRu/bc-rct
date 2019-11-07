@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import './style.css';
 import Tags from "../../../test/Tags";
-import {Button, ButtonGroup} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit, faTimesCircle} from "@fortawesome/free-regular-svg-icons";
-import {ToolbarService} from "../../../toolbar/ToolbarService";
+import {withItemContext} from "./Index";
 
 class FormEdit extends Component {
 	constructor(props) {
@@ -13,30 +10,15 @@ class FormEdit extends Component {
 		this.onChangeValues = this.onChangeValues.bind(this);
 	}
 
-    componentDidMount() {
-        const BarViewItem = ({edit}) => (
-            <ButtonGroup className="w-100">
-                <Button onClick={edit} variant="success">
-                    <FontAwesomeIcon icon={faEdit}/> Сохранить
-                </Button>
-                <Button onClick={ToolbarService.back} variant="secondary">
-                    <FontAwesomeIcon icon={faTimesCircle}/>
-                </Button>
-            </ButtonGroup>
-        );
-
-        ToolbarService.setView(<BarViewItem edit={this.props.setEditMode}/>);
-    }
-
 	onChangeValues(value) {
 		console.log(value)
 	}
 
 	render() {
 		return (
-		    <Tags tags={this.props.item.tags} onChangeValues={this.onChangeValues}/>
+		    <Tags tags={this.props.context.item.tags} onChangeValues={this.onChangeValues}/>
         );
 	}
 }
 
-export default FormEdit;
+export default withItemContext(FormEdit);

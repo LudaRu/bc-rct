@@ -29,6 +29,7 @@
 
 
 .my-masonry-grid {
+    margin-top: .75rem;
     display: flex;
     margin-left: -0.5rem; /* gutter size offset */
     width: auto;
@@ -46,17 +47,6 @@
    }
 
 
-
-
-
-
-
-
-
-
-
-
-
 .my-node-enter {
     opacity: 0;
 }
@@ -70,4 +60,33 @@
 .my-node-exit-active {
     opacity: 0;
     transition: opacity 200ms;
+}
+
+
+/*ROUTER*/
+
+.fade-enter {
+    opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 150ms ease-in;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 150ms ease-in;
+}
+
+.route-section {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin-bottom: 3rem;
 }

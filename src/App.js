@@ -5,7 +5,7 @@ import Toolbar from "./components/toolbar/Index";
 
 const App = () => {
     return <>
-        <Container className="mb-5"><Routers/></Container>
+        <Routers/>
         <Toolbar/>
     </>;
 };
