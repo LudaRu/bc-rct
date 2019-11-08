@@ -42,7 +42,6 @@ BarViewItem.propTypes = {onClick: PropTypes.func};
 
 class Index extends React.Component {
     constructor(props) {
-        console.log(1231231)
         super(props);
 
         this.state = {

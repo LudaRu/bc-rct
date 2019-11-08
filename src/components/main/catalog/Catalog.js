@@ -4,6 +4,7 @@ import Masonry from 'react-masonry-css';
 import {CatalogService} from "./CatalogService";
 import Routers from "../../../App";
 import Container from "react-bootstrap/Container";
+import Modal from "./modal/Modal";
 
 
 
@@ -27,6 +28,8 @@ class Catalog extends Component {
 
         this.state = {
             items: [],
+            modalShow: false,
+            setModalShow: (v) => {this.setState({modalShow: v})},
             hasOpenItem: false,
             setHasOpenItem: (v) => {this.setState({hasOpenItem: v})},
         };
@@ -55,6 +58,7 @@ class Catalog extends Component {
                         columnClassName="my-masonry-grid_column">
                         {this.state.items.map((item) => <Index key={item.id} item={item}/>)}
                     </Masonry>
+                    <Modal/>
                 </CatalogContext.Provider>
             </Container>
         );

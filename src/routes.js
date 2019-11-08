@@ -8,7 +8,6 @@ import TransitionGroup from "react-transition-group/esm/TransitionGroup";
 
 
 const Routers = ({location}) => (
-    <>
         <TransitionGroup>
             <CSSTransition
                 key={location.key}
@@ -26,8 +25,6 @@ const Routers = ({location}) => (
                 </div>
             </CSSTransition>
         </TransitionGroup>
-
-     </>
 );
 
 export default withRouter(Routers);

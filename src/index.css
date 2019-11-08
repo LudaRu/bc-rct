@@ -90,3 +90,16 @@
     left: 0;
     margin-bottom: 3rem;
 }
+
+#main{
+    overflow: auto;
+    max-height: 100vh;
+}
+
+.itemModalWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
