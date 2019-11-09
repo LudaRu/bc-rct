@@ -6,7 +6,6 @@ import Create from "./components/main/catalog/create/Create";
 import CSSTransition from "react-transition-group/esm/CSSTransition";
 import TransitionGroup from "react-transition-group/esm/TransitionGroup";
 
-
 const Routers = ({location}) => (
         <TransitionGroup>
             <CSSTransition

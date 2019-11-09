@@ -5,6 +5,8 @@ import {CatalogService} from "./CatalogService";
 import Routers from "../../../App";
 import Container from "react-bootstrap/Container";
 import Modal from "./modal/Modal";
+import {Route, Link} from "react-router-dom";
+import {CSSTransition} from "react-transition-group";
 
 
 
@@ -28,10 +30,8 @@ class Catalog extends Component {
 
         this.state = {
             items: [],
-            modalShow: false,
-            setModalShow: (v) => {this.setState({modalShow: v})},
-            hasOpenItem: false,
-            setHasOpenItem: (v) => {this.setState({hasOpenItem: v})},
+            changeItemId: false,
+            setChangeItemId: (v) => {this.setState({changeItemId: v})},
         };
     }
 
@@ -52,13 +52,21 @@ class Catalog extends Component {
         return (
             <Container className="mb-5">
                 <CatalogContext.Provider value={this.state}>
+                    <CSSTransition
+                        in={!!this.state.changeItemId}
+                        timeout={300}
+                        classNames="my-node"
+                        unmountOnExit
+                    >
+                        <Modal/>
+                    </CSSTransition>
+
                     <Masonry
                         breakpointCols={{default: 3, 992: 2, 768: 1,}}
                         className="my-masonry-grid"
                         columnClassName="my-masonry-grid_column">
                         {this.state.items.map((item) => <Index key={item.id} item={item}/>)}
                     </Masonry>
-                    <Modal/>
                 </CatalogContext.Provider>
             </Container>
         );

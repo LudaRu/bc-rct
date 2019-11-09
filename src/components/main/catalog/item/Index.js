@@ -93,10 +93,7 @@ class Index extends React.Component {
     }
 
     openItem() {
-        if (this.props.context.hasOpenItem) {
-            return false;
-        }
-        this.props.context.setHasOpenItem(true);
+        this.props.context.setChangeItemId(this.props.item.id);
         this.setState({isOpen: true});
         ToolbarService.setView(
             <ButtonGroup className="w-100">
@@ -111,7 +108,7 @@ class Index extends React.Component {
     }
 
     closeItem() {
-        this.props.context.setHasOpenItem(false);
+        this.props.context.setChangeItemId(false);
         this.setState({isOpen: false});
         ToolbarService.reset();
     }
