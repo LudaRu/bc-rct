@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Index from "./item/Index";
-import Masonry from 'react-masonry-css';
 import Container from "react-bootstrap/Container";
 import {Data} from "./data";
 
@@ -18,7 +17,6 @@ export function withCatalogContext(Component) {
     };
 }
 
-
 class Catalog extends Component {
 
     constructor(props) {
@@ -28,8 +26,6 @@ class Catalog extends Component {
             items: Data,
             hasOpenItem: false,
             setHasOpenItem: (v) => {this.setState({hasOpenItem: v})},
-            openItem:null,
-            setOpenItem: (v) => {this.setState({openItem: v})},
         };
     }
 
@@ -39,7 +35,7 @@ class Catalog extends Component {
 
     render() {
         return (
-            <Container className="mb-5">
+            <Container className="pt-2 pb-2">
                 <CatalogContext.Provider value={this.state}>
                     {this.state.items.map((item) => <Index key={item.id} item={item}/>)}
                 </CatalogContext.Provider>

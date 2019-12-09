@@ -1,6 +1,5 @@
 import React from 'react';
 import './style.css';
-import _ from './styles.module.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart as farHeart} from '@fortawesome/free-regular-svg-icons';
 import {faHeart, faTimes, faCircle} from '@fortawesome/free-solid-svg-icons';
@@ -50,11 +49,13 @@ class Index extends React.Component {
         }
         this.props.context.setHasOpenItem(true);
         this.setState({isOpen: true});
+
         ToolbarService.setView(
             <span className="fa-stack fa-2x" onClick={this.closeItem}>
                 <FontAwesomeIcon icon={faCircle} className={`fa-stack-2x text-danger`} />
                 <FontAwesomeIcon icon={faTimes} className={`fa-stack-1x fa-inverse`}/>
-            </span>);
+            </span>
+        );
     }
 
     closeItem() {
@@ -66,12 +67,12 @@ class Index extends React.Component {
     render() {
         const {isOpen} = this.state;
 
-        return <div className={`${_.item} bg-white rounded shadow-sm mb-3`}>
+        return <div className={`item bg-white rounded shadow-sm mb-3`}>
             <CSSTransition in={isOpen} timeout={0} classNames="modeview">
                     <ItemContext.Provider value={this.state}>
                         <div className="d-flex">
-                            <div className={`${_.itemImg} wimg rounded overflow-hidden`} onClick={() => {this.openItem()}}>
-                                <span style={{backgroundImage: `url(${this.props.item.imgUrl})`}} className={_.blurBg}></span>
+                            <div className={`itemImg wimg rounded overflow-hidden`} onClick={() => {this.openItem()}}>
+                                <span style={{backgroundImage: `url(${this.props.item.imgUrl})`}} className={`blurBg`}></span>
                                 <img className="rounded" src={this.props.item.imgUrl}/>
                             </div>
                             <div className={`wcontent w-100 d-flex`}>
@@ -91,21 +92,21 @@ class Index extends React.Component {
 
     renderContentPreview() {
         return <>
-            <div className={_.itemContent} onClick={this.openItem}>
+            <div className={`itemContent`} onClick={this.openItem}>
                 <div className={`h-100 justify-content-between`}>
                     <div className={`h-100 d-flex flex-column pt-2 pb-2 pl-2 w-100`}>
-                        <div className={_.title}>{this.props.item.title}</div>
-                        <div className={` ${_.footer} d-flex justify-content-between`}>
+                        <div className={`title`}>{this.props.item.title}</div>
+                        <div className={`footer d-flex justify-content-between`}>
                             <small className={`text-info`}>{this.props.item.tags.map(tag => '#' + tag + ' ')}</small>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={`item-toolbar justify-content-between flex-column p-2`}>
+            <div className={`itemToolbar justify-content-between flex-column p-2`}>
                 <div>
                     <FontAwesomeIcon
                         onClick={this.toggleLike}
-                        className={`${_.like} ${(this.state.isLike ? 'text-danger' : '')}`}
+                        className={`like ${(this.state.isLike ? 'text-danger' : '')}`}
                         icon={this.state.isLike ? faHeart : farHeart}
                     />
                 </div>

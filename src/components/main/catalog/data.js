@@ -3,7 +3,7 @@ let datas = [
     {
         id: uuid.v4(),
         imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
+        title: 'Плата Pcb с антенной и usb портом ATMEGA128 ATtiny/CAN/PWM 10Pin',
         tags: ['JavaScript', 'Go'],
         createTime: '12:44',
         isLike: false,
@@ -11,7 +11,7 @@ let datas = [
     {
         id: uuid.v4(),
         imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Square_Lattice_Tiling.svg/220px-Square_Lattice_Tiling.svg.png',
-        title: 'Автоклав бойлер формовочный компрессор',
+        title: '10-ти Канальный DC 5В с низким уровнем триггера',
         tags: ['PHP', 'Go'],
         createTime: '12:44',
         isLike: true,
@@ -19,15 +19,15 @@ let datas = [
     {
         id: uuid.v4(),
         imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
+        title: '12В цифровой контроллер температуры',
         tags: ['Python', 'Ruby', 'Java'],
         createTime: '12:44',
         isLike: false,
     },
     {
         id: uuid.v4(),
-        imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
+        imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Square_Lattice_Tiling.svg/220px-Square_Lattice_Tiling.svg.png',
+        title: 'UART программатор 10Pin USBASP USBISP AVR',
         tags: ['PHP', 'JavaScript', 'Ruby'],
         createTime: '12:44',
         isLike: false,
