@@ -1,6 +1,5 @@
 .enter {
-    /*opacity: 0;*/
-    bottom: -50px;
+    bottom: -100px;
 }
 .enterActive {
     opacity: 1;
@@ -13,7 +12,6 @@
     bottom: 0;
 }
 .exitActive {
-    /*opacity: 0;*/
-    bottom: -50px;
+    bottom: -100px;
     transition: all 250ms;
 }

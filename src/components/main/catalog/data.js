@@ -32,60 +32,6 @@ let datas = [
         createTime: '12:44',
         isLike: false,
     },
-
-    {
-        id: uuid.v4(),
-        imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
-        tags: ['PHP', 'JavaScript', 'Ruby'],
-        createTime: '12:44',
-        isLike: false,
-    },
-
-    {
-        id: uuid.v4(),
-        imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
-        tags: ['PHP', 'JavaScript', 'Ruby'],
-        createTime: '12:44',
-        isLike: false,
-    },
-
-    {
-        id: uuid.v4(),
-        imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
-        tags: ['PHP', 'JavaScript', 'Ruby'],
-        createTime: '12:44',
-        isLike: false,
-    },
-
-    {
-        id: uuid.v4(),
-        imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
-        tags: ['PHP', 'JavaScript', 'Ruby'],
-        createTime: '12:44',
-        isLike: false,
-    },
-
-    {
-        id: uuid.v4(),
-        imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
-        tags: ['PHP', 'JavaScript', 'Ruby'],
-        createTime: '12:44',
-        isLike: false,
-    },
-
-    {
-        id: uuid.v4(),
-        imgUrl: 'https://klike.net/uploads/posts/2019-01/1547367999_1.jpg',
-        title: 'Автоклав бойлер формовочный компрессор',
-        tags: ['PHP', 'JavaScript', 'Ruby'],
-        createTime: '12:44',
-        isLike: false,
-    },
 ];
 
 

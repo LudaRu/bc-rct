@@ -2,14 +2,7 @@
     position: fixed;
     width: 100%;
     bottom: 0;
-    background: linear-gradient(to top, #9b9b9bcf, #e9e9e900);
-    padding: 5px;
-}
-
-.contentWrapper {
-    width: 100%;
-    border-radius: .25rem;
-    /*border-radius: .25rem .25rem 0 0;*/
+    text-align: center;
 }
 
 .page-enter .home{
@@ -24,24 +17,6 @@
 }
 .page-exit .about{
     animation: slideOutRight 0.5s forwards;
-}
-
-
-.catalogBar {
-    color: #fff;
-    min-height: 50px;
-    justify-content: space-around;
-    display: flex;
-    position: relative;
-    align-items: center;
-}
-
-.catalogBar a {
-    color: #fff;
-}
-
-.catalogBar a:hover {
-    color: #fff;
 }
 
 
